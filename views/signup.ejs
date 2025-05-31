@@ -274,30 +274,33 @@
         
         <div class="form-card">
             <div class="form-header">
-                <h2 class="form-title">Welcome Back</h2>
+                <h2 class="form-title">Create Account</h2>
             </div>
             
-            <form id="signupForm">
-                
+            <form id="signupForm" method="post" action="/user/signup">
+                <div class="form-group">
+                    <label class="form-label" for="fullname">Full Name</label>
+                    <input type="text" id="fullname" class="form-input" placeholder="Enter your full name" required name="name">
+                </div>
                 
                 <div class="form-group">
                     <label class="form-label" for="email">Email Address</label>
-                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required name="email">
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label" for="password">Password</label>
                     <div class="password-container">
-                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        <input type="password" id="password" class="form-input" placeholder="Create a strong password" required name="password">
                         <button type="button" class="password-toggle" onclick="togglePassword()">Show</button>
                     </div>
                 </div>
                 
-                <button type="submit" class="create-btn">Continue</button>
+                <button type="submit" class="create-btn">Create Account</button>
                 
                 <div class="login-link">
-                    <span>Don't have an account?</span>
-                    <a href="/login.html">Sign Up</a>
+                    <span>Already have an account?</span>
+                    <a href="#">Sign In</a>
                 </div>
                 
                 <div class="divider">
@@ -335,12 +338,6 @@
             // Google OAuth integration would go here
             console.log('Google Sign-In clicked');
         }
-
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Form submission logic would go here
-            console.log('Form submitted');
-        });
     </script>
 </body>
 </html>
