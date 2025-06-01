@@ -26,60 +26,6 @@
             min-height: 100vh;
         }
 
-        /* Navbar Styles */
-        .navbar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background: rgba(20, 11, 41, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 16px 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-        }
-
-        .logo {
-            font-family: 'Quartzo', 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s ease;
-            padding: 8px 0;
-        }
-
-        .nav-link:hover {
-            color: #8b5cf6;
-        }
-
         /* Dropdown Styles */
         .dropdown {
             position: relative;
@@ -219,11 +165,6 @@
             letter-spacing: 0.5px;
         }
 
-        .card-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-container {
@@ -254,83 +195,24 @@
     </style>
 </head>
 <body>
-    <!-- Sticky Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">YapSpace</a>
-            
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Write a Blog</a>
-                </li>
-                <% if (locals.user) { %>
-                    <li class="nav-item dropdown">
-                        <div class="dropdown-toggle" onclick="toggleDropdown()">
-                            <%= user.name %>
-                            <span class="dropdown-arrow">▼</span>
-                        </div>
-                        <div class="dropdown-menu">
-                            <a href="/user/logout" class="dropdown-item">Log Out</a>
-                        </div>
-                    </li>
-                    <% } else { %>
-                    <li class="nav-item dropdown">
-                        <div class="dropdown-toggle" onclick="toggleDropdown()">
-                            UserName
-                            <span class="dropdown-arrow">▼</span>
-                        </div>
-                        <div class="dropdown-menu">
-                            <a href="/user/singup" class="dropdown-item">Create Account</a>
-                            <a href="/user/login" class="dropdown-item">Log In</a>
-                        </div>
-                    </li>
-                    <% } %>
-            </ul>
-        </div>
-    </nav>
- 
-
+    <%- include("./nav") %>
     <!-- Main Content -->
     <main class="main-content">
         <div class="cards-container">
-            <!-- Card 1 -->
-            <div class="card" onclick="viewCard(1)">
-                <div class="card-image">
-                    📝
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Latest Articles</h3>
-                    <p class="card-description">Discover the most recent blog posts and articles from our community writers.</p>
-                    <button class="card-button" onclick="event.stopPropagation(); viewCard(1)">View</button>
-                </div>
-            </div>
-
+           
             <!-- Card 2 -->
-            <div class="card" onclick="viewCard(2)">
+            <% blogs.forEach(blog => { %>
+                <div class="card" onclick="viewCard(2)">
                 <div class="card-image">
                     🚀
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Trending Topics</h3>
-                    <p class="card-description">Explore the hottest topics and discussions happening right now in our community.</p>
-                    <button class="card-button" onclick="event.stopPropagation(); viewCard(2)">View</button>
+                    <h3 class="card-title"><%= blog.title %></h3>
+                    <p class="card-description"><%= blog.content %></p>
+                    <button class="card-button" href="#">View</button>
                 </div>
             </div>
-
-            <!-- Card 3 -->
-            <div class="card" onclick="viewCard(3)">
-                <div class="card-image">
-                    👥
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Community Hub</h3>
-                    <p class="card-description">Connect with fellow writers and readers in our vibrant community space.</p>
-                    <button class="card-button" onclick="event.stopPropagation(); viewCard(3)">View</button>
-                </div>
-            </div>
+            <% }) %>
         </div>
     </main>
 

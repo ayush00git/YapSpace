@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Blog</title>
+</head>
+<style>
+    /* Navbar Styles */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(20, 11, 41, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-family: 'Quartzo', 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .nav-link:hover {
+            color: #8b5cf6;
+        }
+
+</style>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">YapSpace</a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/blog/addBlog" class="nav-link">Write a Blog</a>
+                </li>
+                <% if (locals.user) { %>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown-toggle" onclick="toggleDropdown()">
+                            <%= user.name %>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="/user/logout" class="dropdown-item">Log Out</a>
+                        </div>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown-toggle" onclick="toggleDropdown()">
+                            UserName
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="/user/singup" class="dropdown-item">Create Account</a>
+                            <a href="/user/login" class="dropdown-item">Log In</a>
+                        </div>
+                    </li>
+                    <% } %>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>
