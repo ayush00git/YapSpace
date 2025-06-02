@@ -17,6 +17,7 @@ connectMongo("mongodb://127.0.0.1:27017/YapSpace")
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(checkForAuthorization)
+app.use(express.static(path.resolve("./public")))
 
 app.set("view engine", "ejs")
 app.set("views", path.resolve("./views"))

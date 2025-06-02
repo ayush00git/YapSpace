@@ -167,13 +167,13 @@
             </div>
             
             <div class="form-group">
-                <label class="form-label" for="coverImage">Cover Image</label>
+                <label class="form-label" for="coverImage">Upload a cover-image</label>
                 <div class="file-input-wrapper">
-                    <input type="file" id="coverImage" name="coverImageURL" class="file-input" accept="image/*">
-                    <label for="coverImage" class="file-input-label">
-                        <span class="upload-icon" type="submit" type="file">📷</span>
-                        Choose cover image
-                    </label>
+                <input type="file" id="coverImage" name="coverImageURL" class="file-input" style="display:none;">
+                <label for="coverImage" class="file-input-label" id="customFileLabel">
+                    <span class="upload-icon">📷</span>
+                    <span id="fileLabelText">Choose cover image</span>
+                </label>
                 </div>
             </div>
             
@@ -187,4 +187,10 @@
     </div>
 
 </body>
+<script>
+document.getElementById('coverImage').addEventListener('change', function(e) {
+    const fileName = e.target.files.length ? e.target.files[0].name : "Choose cover image";
+    document.getElementById('fileLabelText').textContent = fileName;
+});
+</script>
 </html>
