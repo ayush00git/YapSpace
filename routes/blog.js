@@ -32,8 +32,18 @@ router.get('/addBlog', async(req, res) => {
     if(!req.user){
         return res.redirect("/user/signup")
     }
-    return res.render("blog")
+    return res.render("blog", {
+        user: req.user
+    })
 })
 
+router.use(express.static(path.resolve('./public'))) 
+router.get('/:id', async(req, res) => {
+    const blog = await Blog.findById(req.params.id).populate("createdBy")
+    return res.render("blogId", {
+        blog,
+        user: req.user,
+    })
+})
 
 module.exports = router

@@ -17,7 +17,8 @@ const blogSchema = new mongoose.Schema({
         default: "/images/default.png"
     },
     createdBy: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
     }
 }, {timestamps: true})
 
