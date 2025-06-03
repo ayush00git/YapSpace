@@ -44,7 +44,7 @@ router.post('/addBlog', upload.single('coverImageURL') , async (req, res) => {
 
 router.get('/addBlog', async(req, res) => {
     if(!req.user){
-        return res.redirect("/user/signup")
+        return res.render("signup", {error: 'You need to have an account for writing an blog'})
     }
     return res.render("blog", {
         user: req.user
@@ -57,7 +57,6 @@ router.use(express.static(path.resolve('./public')))
 router.get('/:id', async(req, res) => {
     const blog = await Blog.findById(req.params.id).populate("createdBy")
     const comments = await Comment.find({blogId: req.params.id}).populate("createdBy")
-    console.log(comments)
     return res.render("blogId", {
         blog,
         user: req.user,
@@ -67,7 +66,7 @@ router.get('/:id', async(req, res) => {
 
 router.post('/comment/:id', async(req, res) => {
     if(!req.user){
-        return res.send("You are not logged In")
+        return res.render("signup", {error: 'Create an account to comment on a blog'})
     }
     await Comment.create({
         comment: req.body.comment,

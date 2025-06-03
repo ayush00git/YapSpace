@@ -267,6 +267,9 @@
     </style>
 </head>
 <body>
+    <% if (error) { %>
+     <%- include("./error") %>
+    <% } %>
     <div class="container">
         <div class="logo">
             <h1>YapSpace</h1>
