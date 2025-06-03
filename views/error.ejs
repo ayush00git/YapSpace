@@ -1,0 +1,151 @@
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #140b29;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Error popup positioned at top-right */
+        .error-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 92, 92, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            width: 320px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(255, 92, 92, 0.15);
+            z-index: 1000;
+            transform: translateX(100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .error-popup.show {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Error popup header */
+        .error-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        /* Error icon */
+        .error-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            margin-right: 12px;
+            flex-shrink: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Error title */
+        .error-title {
+            color: #ef4444;
+            font-size: 1rem;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        /* Close button */
+        .error-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .error-close:hover {
+            color: #ef4444;
+            background: rgba(255, 92, 92, 0.1);
+        }
+
+        /* Error message */
+        .error-message {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-left: 40px;
+        }
+
+        /* Progress bar for auto-hide */
+        .error-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+            border-radius: 0 0 16px 16px;
+            width: 100%;
+            transform-origin: left;
+            animation: shrink 5s linear forwards;
+        }
+
+        @keyframes shrink {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 480px) {
+            .error-popup {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+                max-width: calc(100vw - 20px);
+            }
+            
+            .error-message {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+            
+            .error-header {
+                margin-bottom: 8px;
+            }
+        }
+</style>
+<div class="error-popup" id="errorPopup">
+    <div class="error-header">
+        <div class="error-icon">⚠️</div>
+        <div class="error-title">Error</div>
+        <button class="error-close" onclick="hideErrorPopup()">&times;</button>
+    </div>
+    <div class="error-message" id="errorMessage">Wrong password</div>
+    <div class="error-progress" id="errorProgress"></div>
+</div>

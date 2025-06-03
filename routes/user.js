@@ -39,7 +39,7 @@ router.get("/login", async(req, res) => {
 })
 
 router.get("/logout", async(req, res) => {
-    return res.clearCookie("token").redirect('/')
+    return res.clearCookie("token").redirect('/user/login')
 })
 
 

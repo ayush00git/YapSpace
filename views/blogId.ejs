@@ -152,13 +152,13 @@
         background-color: #1a0f34;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
-        padding: 20px;
+        padding: 15px;
         margin-bottom: 15px;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         display: block;
         white-space: pre-wrap;
         color: rgba(255, 255, 255, 0.6);
-        font-style: italic;
+        
       }
 
       @media (max-width: 768px) {
@@ -248,9 +248,9 @@
         </form>
       </div>
       <div class="comments-section">
-        <h2 class="comments-title">Comments</h2>
-        <% comment.forEach(com => { %>
-        <div class="comment-card"><%= com.comment %></div>
+        <h2 class="comments-title">Recent Comments</h2>
+      <% comments.forEach(com => { %>
+        <div class="comment-card" style="font-size: 20px;"><div style="font-size: 15px; font-weight: bolder;"><%= com.createdBy.name %></div><%= com.comment %></div>
         <% }) %>
       </div>
     </div>

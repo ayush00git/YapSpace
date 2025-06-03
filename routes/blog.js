@@ -56,15 +56,19 @@ router.get('/addBlog', async(req, res) => {
 router.use(express.static(path.resolve('./public'))) 
 router.get('/:id', async(req, res) => {
     const blog = await Blog.findById(req.params.id).populate("createdBy")
-    const comment = await Comment.find({blogId: req.params._id}).populate("createdBy")
+    const comments = await Comment.find({blogId: req.params.id}).populate("createdBy")
+    console.log(comments)
     return res.render("blogId", {
         blog,
         user: req.user,
-        comment
+        comments
     })
 })
 
 router.post('/comment/:id', async(req, res) => {
+    if(!req.user){
+        return res.send("You are not logged In")
+    }
     await Comment.create({
         comment: req.body.comment,
         blogId: req.params.id,
