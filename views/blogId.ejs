@@ -1,237 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            background-color: #140b29;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-            min-height: 100vh;
-        }
+      body {
+        background-color: #140b29;
+        color: white;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        min-height: 100vh;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
+      .blog-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #ffffff;
+      }
+
+      .images-section {
+        margin-bottom: 40px;
+      }
+
+      .images-container {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scroll-behavior: smooth;
+      }
+
+      .images-container::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .images-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .images-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+      }
+
+      .images-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .image-card {
+        background-color: #1a0f34;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        min-width: 280px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+
+      .image-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .image-card:hover {
+        background-color: #241345;
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .blog-body {
+        background-color: #1a0f34;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 40px;
+        margin-bottom: 40px;
+        display: block;
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        white-space: pre-wrap;
+      }
+
+      .author-section {
+        margin-bottom: 40px;
+      }
+
+      .author-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .author-card {
+        background-color: #1a0f34;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        max-width: 400px;
+      }
+
+      .author-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #e0e0e0;
+        flex-shrink: 0;
+      }
+
+      .author-name {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      .comments-section {
+        margin-bottom: 20px;
+      }
+
+      .comments-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .comment-card {
+        background-color: #1a0f34;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        display: block;
+        white-space: pre-wrap;
+        color: rgba(255, 255, 255, 0.6);
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
         .blog-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 40px;
-            color: #ffffff;
-        }
-
-        .images-section {
-            margin-bottom: 40px;
-        }
-
-        .images-container {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 10px 0;
-            scroll-behavior: smooth;
-        }
-
-        .images-container::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .images-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-
-        .images-container::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-        }
-
-        .images-container::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
+          font-size: 2rem;
         }
 
         .image-card {
-            background-color: #1a0f34;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            min-width: 280px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        .image-card:hover {
-            background-color: #241345;
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+          min-width: 240px;
+          height: 160px;
         }
 
         .blog-body {
-            background-color: #1a0f34;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 40px;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
+          padding: 20px;
+          font-size: 1.2rem;
         }
-
-        .author-section {
-            margin-bottom: 40px;
-        }
-
-        .author-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .author-card {
-            background-color: #1a0f34;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            max-width: 400px;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #e0e0e0;
-            flex-shrink: 0;
-        }
-
-        .author-name {
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .comments-section {
-            margin-bottom: 20px;
-        }
-
-        .comments-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .comment-card {
-            background-color: #1a0f34;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-        }
-
-        .comment-card:before {
-            content: "Comment placeholder";
-        }
-
-        @media (max-width: 768px) {
-            .blog-title {
-                font-size: 2rem;
-            }
-            
-            .image-card {
-                min-width: 240px;
-                height: 160px;
-            }
-            
-            .blog-body {
-                padding: 20px;
-                font-size: 1.2rem;
-            }
-        }
-    
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <%- include("./nav") %>
+    <br />
     <div class="container">
-        <h1 class="blog-title"><%= blog.title %></h1>
-        
-        <div class="images-section">
-            <div class="images-container">
-                <div class="image-card">
-                    <img src="<%= blog.coverImageURL %>" alt="Image 1">
-                </div>
-                <div class="image-card">
-                    <img src="#" alt="Image 2">
-                </div>
-                <div class="image-card">
-                    <img src="#" alt="Image 3">
-                </div>
-                <div class="image-card">
-                    <img src="#" alt="Image 4">
-                </div>
-                <div class="image-card">
-                    <img src="#" alt="Image 5">
-                </div>
-                <div class="image-card">
-                    <img src="#" alt="Image 6">
-                </div>
-            </div>
-        </div>
+      <h1 class="blog-title"><%= blog.title %></h1>
 
-        <div class="blog-body">
-            <%= blog.content %>
+      <div class="images-section">
+        <div class="images-container">
+          <div class="image-card">
+            <img src="<%= blog.coverImageURL %>" alt="Image 1" />
+          </div>
         </div>
+      </div>
 
-        <div class="author-section">
-            <h2 class="author-title">Author</h2>
-            <div class="author-card">
-                <div class="author-avatar"></div>
-                <div class="author-name"><%= blog.createdBy.name %></div>
-            </div>
-        </div>
+      <div class="blog-body"><%= blog.content %></div>
 
-        <div class="comments-section">
-            <h2 class="comments-title">Comments</h2>
-            <div class="comment-card"></div>
-            <div class="comment-card"></div>
-            <div class="comment-card"></div>
-            <div class="comment-card"></div>
+      <div class="author-section">
+        <h2 class="author-title">Author</h2>
+        <div class="author-card">
+          <% if (locals.user) { %>
+          <div class="author-avatar">
+            <img src="<%= user.profileImageURL %>" />
+          </div>
+          <% } else { %>
+          <div class="author-avatar"></div>
+          <% } %>
+          <div class="author-name"><%= blog.createdBy.name %></div>
         </div>
+      </div>
+
+      <div class="add-comment-section" style="margin-bottom: 40px">
+        <h2 class="comments-title">Add a Comment</h2>
+        <form
+          id="commentForm"
+          method="post"
+          action="/blog/comment/<%= blog._id %>"
+        >
+          <textarea
+            name="comment"
+            class="comment-input"
+            placeholder="Write your comment here..."
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              border-radius: 4px;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              background-color: #1a0f34;
+              color: rgba(255, 255, 255, 0.8);
+            "
+          ></textarea>
+          <button
+            type="submit"
+            class="comment-btn"
+            style="
+              margin-top: 10px;
+              padding: 10px 20px;
+              border-radius: 4px;
+              background-color: #241345;
+              color: white;
+              border: none;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+            "
+          >
+            Post Comment
+          </button>
+        </form>
+      </div>
+      <div class="comments-section">
+        <h2 class="comments-title">Comments</h2>
+        <% comment.forEach(com => { %>
+        <div class="comment-card"><%= com.comment %></div>
+        <% }) %>
+      </div>
     </div>
-</body>
+  </body>
 </html>

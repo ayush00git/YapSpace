@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "user"
+    },
+    profileImageURL: {
+        type: String,
+        default: '/images.profile.png'
     }
 }, {timestamps: true})
 
