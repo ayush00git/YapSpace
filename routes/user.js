@@ -13,7 +13,7 @@ router.post("/signup", async (req, res) => {
     return res.redirect("/user/login");
   } catch (err) {
     if(err.code === 11000){
-      return res.render("signup", {error: 'Email already registered login instead'})      // in case of err.code = 11000 which is mongodb duplicated key error
+      return res.render("signup", {error: 'Username is already registered login instead'})      // in case of err.code = 11000 which is mongodb duplicated key error
   }}
 });
 
@@ -24,10 +24,10 @@ router.get("/signup", async (req, res) => {
 
 //login
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { name, password } = req.body;
 
   try {
-    const foundUser = await User.matchPassword(email, password);
+    const foundUser = await User.matchPassword(name, password);
     const token = createToken(foundUser);
     res.cookie("token", token);
     return res.redirect("/");

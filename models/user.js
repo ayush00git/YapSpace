@@ -5,10 +5,11 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+        unique: true
     },
     email: {
         type: String,
-        required: true,
+        required: false,
         unique: true
     },
     salt: {
@@ -41,10 +42,10 @@ userSchema.pre("save", function(next){
     next()
 })
 
-userSchema.static("matchPassword", async function (email, password) {
-    const user = await this.findOne({ email })
+userSchema.static("matchPassword", async function (name, password) {
+    const user = await this.findOne({ name })
     if(!user){
-        throw new Error(`Email is not registered, signup first`)
+        throw new Error(`Username is not registered, signup first`)
     }
     const salt = user.salt
     const hashedPassword = user.password

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YapSpace - Home</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -23,24 +23,71 @@
       }
 
       body {
-        font-family: "Inter", sans-serif;
+        font-family: "Wix Madefor Display", sans-serif;
         background: #140b29;
         color: white;
         min-height: 100vh;
       }
+      .a-space-to {
+        margin: 0;
+        line-height: 1.1;
+      }
+      .a-space-to-container {
+        z-index: 2;
+        margin-bottom: 40px;
+        font-weight: 600;
+        position: relative;
+      }
+
+      .icon {
+        position: absolute;
+        top: calc(50% - 470px);
+        left: calc(50% + 350px);
+        width: 536px;
+        height: 583px;
+      }
+      .icon1 {
+        position: absolute;
+        top: calc(50% - 300px);
+        left: calc(50% - 798px);
+        object-fit: contain;
+      }
+      .desktop-4 {
+        width: 100%;
+        position: relative;
+        background-color: #140b29;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 90px;
+        color: #fff;
+        font-family: "Wix Madefor Display";
+        overflow: hidden;
+        padding: 40px 20px;
+      }
 
       /* Main Content */
+      .desktop-4 {
+        font-size: 70px;
+        padding: 40px 30px;
+      }
       .main-content {
-        padding: 80px 24px;
+        padding: 0px 10px;
         max-width: 1200px;
         margin: 0 auto;
+      }
+      .cta-button {
+        font-size: 1.1rem;
+        padding: 16px 35px;
       }
 
       .cards-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 32px;
-        max-width: 1000px;
+        gap: 50px 70px;
         margin: 0 auto;
       }
 
@@ -78,13 +125,13 @@
       }
 
       .card-content {
-        padding: 24px;
+        padding: 30px;
       }
 
       .card-title {
         font-size: 20px;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 20px;
         color: white;
       }
 
@@ -121,25 +168,91 @@
         transform: scale(0.98);
         box-shadow: 0 5px 10px rgba(139, 92, 246, 0.2);
       }
+      .cta-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(139, 92, 246, 0.5);
+        border-radius: 50px;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: 18px 40px;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        margin-top: 2rem;
+      }
 
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        border-color: #8b5cf6;
+        background: rgba(139, 92, 246, 0.2);
+        box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      .cta-button:active {
+        transform: translateY(-1px);
+      }
+
+      
       /* Mobile Responsive */
       @media (max-width: 768px) {
-        
         .cards-container {
           grid-template-columns: 1fr;
           gap: 24px;
         }
-
+        .desktop-4 {
+          font-size: 40px;
+          padding: 30px 20px;
+          min-height: 80vh;
+        }
         .main-content {
-          padding: 60px 16px;
+          padding: 40px 16px;
+        }
+        .cta-button {
+          font-size: 1rem;
+          padding: 14px 28px;
+          margin-top: 20px;
         }
       }
     </style>
   </head>
   <body>
-    
     <%- include("./nav") %>
+
     <!-- Main Content -->
+    <div class="desktop-4">
+      <div class="a-space-to-container">
+        <p class="a-space-to">A space to share</p>
+        <p class="a-space-to">your thoughts</p>
+      </div>
+      <a href="/blog/addBlog" class="cta-button">Write a Blog</a>
+      <img class="icon" alt="" src="images/083.png" />
+      <img class="icon1" alt="" src="images/115.png" />
+    </div>
+
     <main class="main-content">
       <div class="cards-container">
         <!-- Card 2 -->
@@ -150,14 +263,14 @@
           </div>
           <div class="card-content">
             <h3 class="card-title"><%= blog.title %></h3>
-            <br>
+            <br />
             <a class="card-button" href="/blog/<%= blog._id %>">View</a>
           </div>
         </div>
         <% }) %>
       </div>
     </main>
-
+    <%- include("./footer") %>
     <script>
       function toggleDropdown() {
         const dropdown = document.querySelector(".dropdown");
