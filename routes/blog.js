@@ -51,6 +51,14 @@ router.get('/addBlog', async(req, res) => {
     })
 })
 
+router.get('/myBlog', async(req, res) => {
+    const blogs = await Blog.find({createdBy: req.user._id})
+    console.log(blogs)
+    res.render("myBlog", {
+        blogs,
+        user: req.user
+    })
+})
 
 
 router.use(express.static(path.resolve('./public'))) 
@@ -75,6 +83,8 @@ router.post('/comment/:id', async(req, res) => {
     })
     return res.redirect(`/blog/${req.params.id}`)
 })
+
+
 
 
 
