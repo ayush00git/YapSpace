@@ -53,7 +53,6 @@ router.get('/addBlog', async(req, res) => {
 
 router.get('/myBlog', async(req, res) => {
     const blogs = await Blog.find({createdBy: req.user._id})
-    console.log(blogs)
     res.render("myBlog", {
         blogs,
         user: req.user

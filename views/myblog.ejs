@@ -30,14 +30,14 @@
       }
       .cards-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 50px 70px;
         margin: 0 auto;
+        max-width: 1200px;
       }
 
       .card {
-        position: relative;
-        left: 200px;
+        
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
@@ -119,9 +119,11 @@
   <body>
     <%- include("./partials/nav") %>
     <br />
-    <main class="main-content">
+    
+    <main class="main-content">   
       <div class="cards-container">
         <% blogs.forEach(blog => { %>
+          
         <div class="card" onclick="viewCard(2)">
           <div class="card-image">
             <img src="<%= blog.coverImageURL %>" />
