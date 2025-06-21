@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const {connectMongo} = require("./connection")
 const path = require("path")
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const userRouter = require("./routes/user")
 const {checkForAuthorization} = require("./middlewares/auth")
 const cookieParser = require("cookie-parser")
@@ -10,7 +10,7 @@ const multer = require("multer")
 const Blog = require("./models/blog")
 const blogRouter = require("./routes/blog")
 
-connectMongo("mongodb://127.0.0.1:27017/YapSpace")
+connectMongo("mongodb://mongo:27017/YapSpace")
 .then(() => console.log("MongoDB Connected"))
 .catch((err) => console.log(`Mongo Error: ${err}`))
 
