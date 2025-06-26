@@ -1,3 +1,6 @@
+const dotenv = require("dotenv")
+dotenv.config()
+
 const express = require("express")
 const app = express()
 const {connectMongo} = require("./connection")
@@ -10,7 +13,7 @@ const multer = require("multer")
 const Blog = require("./models/blog")
 const blogRouter = require("./routes/blog")
 
-connectMongo("mongodb://mongo:27017/YapSpace")
+connectMongo(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch((err) => console.log(`Mongo Error: ${err}`))
 

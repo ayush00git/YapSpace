@@ -12,6 +12,9 @@ const blogSchema = new mongoose.Schema({
     blogId: {
         type: String,      
     },
+    imageUid: {
+        type: String
+    },
     coverImageURL: {
         type: String,
         default: "/images/default.png"

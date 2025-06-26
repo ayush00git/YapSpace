@@ -5,40 +5,59 @@ const multer = require("multer")
 const path = require("path")
 const fs = require("fs")
 const Comment = require("../models/comment")
+const cloudinary = require("cloudinary").v2
+const { v4: uuidv4 } = require("uuid")
+const sharp = require("sharp")
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        const uploadPath = path.resolve(`./public/uploads/${req.user.name}-${req.user._id}`)
-        fs.mkdirSync(uploadPath, {recursive: true} )
-        return cb(null, uploadPath)
-    },
-    filename: function(req, file, cb) {
-        const filename = `${file.originalname}`
-        return cb(null, filename)
-    }
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-const fileFilter = function(req, file, cb){
-    const allowedTypes = [".png", ".jpg", ".jpeg"]
-    const ext = path.extname(file.originalname).toLowerCase()
-    if(!allowedTypes.includes(ext)){
-        return cb(new Error(`Files must be of format .jpg, .png or .jepg`))
-    }
-    cb(null, true)
-}
+const upload = multer({
+    storage: multer.memoryStorage()
+})
 
-const upload = multer({storage, fileFilter})
+router.post('/addBlog', upload.single('coverImageURL'), async(req, res) => {
+    const { title, content } = req.body
+    try{
+        let coverImageURL = null
+        let imageUid = null
 
-router.post('/addBlog', upload.single('coverImageURL') , async (req, res) => {
-    const { content, title } = req.body
-    const blog = await Blog.create({
+        if(req.file){
+            imageUid = uuidv4()
+
+            const webpBuffer = await sharp(req.file.buffer)
+            .rotate()
+            .webp({quality: 80})
+            .toBuffer();
+
+            const result = await cloudinary.uploader.upload(`data:image/webp;base64,${webpBuffer.toString('base64')}`,
+            {
+                resource_type: "image",
+                folder: `yap-thumbnails`,
+                public_id: imageUid,
+                format: "webp"
+            })
+            coverImageURL = result.secure_url
+            
+        }
+
+        const blog = await Blog.create({
         title,
         content,
-        coverImageURL: req.file ? `uploads/${req.user.name}-${req.user._id}/${req.file.filename}` : undefined,
+        coverImageURL,
+        imageUid,
         createdBy: req.user._id
         
-    }) 
-    return res.redirect(`/blog/${blog._id}`)
+        }) 
+        return res.redirect(`/blog/${blog._id}`)
+    }
+    catch(err){
+        console.log(`${err.message}`)
+    }
+    
 })
 
 
