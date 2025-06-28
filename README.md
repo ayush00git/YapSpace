@@ -101,7 +101,7 @@ Ensure you have the following installed:
    # Database
    MONGODB_URI=mongodb://localhost:27017/yapspace
    # Or use MongoDB Atlas:
-   # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/yapspace
+   # MONGODB_URI=your_cloud_url
    
    # Cloudinary Configuration
    CLOUDINARY_CLOUD_NAME=your_cloud_name
