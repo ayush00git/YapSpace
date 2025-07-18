@@ -87,30 +87,7 @@ Ensure you have the following installed:
 
 3. **Environment Configuration**
    
-   Create a `.env` file in the root directory:
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Configure your environment variables:
-   ```env
-   # Server Configuration
-   PORT=3000
-   NODE_ENV=development
-   
-   # Database
-   MONGODB_URI=mongodb://localhost:27017/yapspace
-   # Or use MongoDB Atlas:
-   # MONGODB_URI=your_cloud_url
-   
-   # Cloudinary Configuration
-   CLOUDINARY_CLOUD_NAME=your_cloud_name
-   CLOUDINARY_API_KEY=your_api_key
-   CLOUDINARY_API_SECRET=your_api_secret
-   
-   # Security
-   SESSION_SECRET=your_super_secret_key_here
-   ```
+   Create a `.env` file in the root directory
 
 4. **Database Setup**
    
@@ -185,53 +162,6 @@ docker-compose down
 2. Navigate to your dashboard
 3. Copy your Cloud Name, API Key, and API Secret
 4. Add these credentials to your `.env` file
-
-## 🚀 Deployment
-
-### Platform Options
-
-YapSpace can be deployed on various platforms:
-
-#### Render
-1. Fork this repository
-2. Connect your GitHub account to Render
-3. Create a new Web Service
-4. Set environment variables in the Render dashboard
-
-#### Railway
-1. Install Railway CLI: `npm install -g @railway/cli`
-2. Login: `railway login`
-3. Deploy: `railway up`
-
-#### Heroku (with Docker)
-1. Install Heroku CLI
-2. Login: `heroku login`
-3. Create app: `heroku create your-app-name`
-4. Set stack: `heroku stack:set container`
-5. Deploy: `git push heroku main`
-
-#### DigitalOcean/AWS/GCP
-Use the provided Dockerfile for deployment on any cloud platform supporting containers.
-
-## 🛣️ Roadmap
-
-### Completed Features
-- ✅ Blog creation and publishing
-- ✅ Image upload and management
-- ✅ Responsive design
-- ✅ Docker containerization
-
-### Upcoming Features
-- 🔜 **User Authentication** - Secure login and user management
-- 🔜 **Comment System** - Reader engagement with comments and replies
-- 🔜 **Social Features** - Like, share, and follow functionality
-- 🔜 **Search & Tags** - Discover content with advanced search and tagging
-- 🔜 **Rich Text Editor** - Enhanced writing experience with formatting options
-- 🔜 **Dark Mode** - Eye-friendly dark theme
-- 🔜 **SEO Optimization** - Better search engine visibility
-- 🔜 **Analytics Dashboard** - Track post performance and reader engagement
-- 🔜 **Mobile App** - Native mobile applications
-- 🔜 **Multi-language Support** - Internationalization capabilities
 
 ## 🤝 Contributing
 
