@@ -71,7 +71,7 @@ router.get('/addBlog', async(req, res) => {
 })
 
 router.get('/myBlog', async(req, res) => {
-    const blogs = await Blog.find({createdBy: req.user._id})
+    const blogs = await Blog.find({createdBy: req.user._id}).sort({ createdAt: -1 })
     res.render("myBlog", {
         blogs,
         user: req.user

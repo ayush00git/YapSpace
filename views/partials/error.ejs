@@ -13,7 +13,7 @@
     transition: opacity 0.5s ease;
   }
 </style>
-<div class="error-box"><%= error %></div>
+<div class="error-box" id="errorBox"><%= error %></div>
 <script>
   setTimeout(() => {
     const box = document.getElementById("errorBox");
@@ -21,6 +21,6 @@
       box.style.opacity = "0";
       setTimeout(() => box.remove(), 500); // remove it after fade out
     }
-  }, 3000);
+  }, 2000);
 </script>
 </body>

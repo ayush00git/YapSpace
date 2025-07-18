@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/images/favicon.jpg" type="image/jpg">
+    <link rel="icon" href="/images/favicon.jpg" type="image/jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YapSpace - LogIn</title>
     <link
@@ -51,12 +51,9 @@
       }
 
       .form-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 24px;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
         padding: 48px 40px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       }
 
       .form-header {
@@ -205,9 +202,7 @@
     </style>
   </head>
   <body>
-    <% if (error) { %>
-    <%- include('./partials/error') %>
-    <% } %>
+    <% if (error) { %> <%- include('./partials/error') %> <% } %>
     <div class="container">
       <div class="logo">
         <h1>YapSpace</h1>
@@ -257,8 +252,6 @@
             <span>Don't have an account?</span>
             <a href="/user/signup">Sign Up</a>
           </div>
-
-          
         </form>
       </div>
     </div>
@@ -276,8 +269,6 @@
           toggleBtn.textContent = "Show";
         }
       }
-
-      
     </script>
   </body>
 </html>

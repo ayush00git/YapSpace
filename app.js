@@ -28,13 +28,15 @@ app.set("views", path.resolve("./views"))
 app.use("/user", userRouter)
 app.use("/blog", blogRouter)
 
-
 app.get('/', async (req, res) => {
-    const allBlogs = await Blog.find({})
+    const allBlogs = await Blog.find({}).sort({ createdAt: -1 })
     res.render("home", {
         user: req.user,
         blogs: allBlogs
     })
+})
+app.use((req, res, next) => {
+    return res.status(404).render('404');
 })
 
 app.listen(PORT, () => console.log(`Server started at - http://localhost:${PORT}`))
