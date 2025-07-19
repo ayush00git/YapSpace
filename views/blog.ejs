@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YapSpace - Add Blog</title>
     <link rel="icon" href="/images/favicon.jpg" type="image/jpg" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
     <style>
       * {
         margin: 0;
@@ -27,13 +25,10 @@
       }
 
       .form-container {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 0px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         padding: 40px;
         width: 100%;
-        max-width: 500px;
-        backdrop-filter: blur(10px);
       }
 
       .form-title {
@@ -62,6 +57,7 @@
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 12px;
+        font-family: 'intel one mono', sans-serif;
         color: white;
         font-size: 1rem;
         transition: all 0.3s ease;
@@ -79,9 +75,9 @@
       }
 
       .form-textarea {
-        min-height: 120px;
+        min-height: 275px;
         resize: vertical;
-        font-family: inherit;
+        font-family: 'intel one mono', sans-serif;
       }
 
       .file-input-wrapper {
@@ -162,9 +158,9 @@
     </style>
   </head>
   <body>
-    <%- include("./partials/nav") %>
-    <br />
-    <br />
+  
+      <%- include('./partials/nav') %>
+   
     <div class="form-container">
       <h2 class="form-title">Add New Blog</h2>
 

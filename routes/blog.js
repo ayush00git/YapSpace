@@ -18,7 +18,7 @@ cloudinary.config({
 const upload = multer({
     storage: multer.memoryStorage()
 })
-
+// cloudinary upload handler
 router.post('/addBlog', upload.single('coverImageURL'), async(req, res) => {
     const { title, content } = req.body
     try{
@@ -60,7 +60,7 @@ router.post('/addBlog', upload.single('coverImageURL'), async(req, res) => {
     
 })
 
-
+// post route for adding an blog
 router.get('/addBlog', async(req, res) => {
     if(!req.user){
         return res.render("signup", {error: 'You need to have an account for writing an blog'})
@@ -70,6 +70,7 @@ router.get('/addBlog', async(req, res) => {
     })
 })
 
+// route for fetching the data for a user's blogs
 router.get('/myBlog', async(req, res) => {
     const blogs = await Blog.find({createdBy: req.user._id}).sort({ createdAt: -1 })
     res.render("myBlog", {
@@ -80,6 +81,8 @@ router.get('/myBlog', async(req, res) => {
 
 
 router.use(express.static(path.resolve('./public'))) 
+
+// route for details of a particular blog
 router.get('/:id', async(req, res) => {
     const blog = await Blog.findById(req.params.id).populate("createdBy")
     const comments = await Comment.find({blogId: req.params.id}).populate("createdBy")
@@ -90,6 +93,7 @@ router.get('/:id', async(req, res) => {
     })
 })
 
+// post request for commenting on a blog
 router.post('/comment/:id', async(req, res) => {
     if(!req.user){
         return res.render("signup", {error: 'Create an account to comment on a blog'})
@@ -102,8 +106,12 @@ router.post('/comment/:id', async(req, res) => {
     return res.redirect(`/blog/${req.params.id}`)
 })
 
-
-
-
+// delete request for a user willing to delete a post
+router.delete('/myBlog/:id', async(req, res) => {
+    const blog = await Blog.findOneAndDelete({ 
+        _id: req.params.id,
+        createdBy: req.user._id
+    })
+})
 
 module.exports = router
