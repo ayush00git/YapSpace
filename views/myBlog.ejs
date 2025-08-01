@@ -73,14 +73,14 @@
         padding: 30px;
       }
 
-      .delete-icon{
+      /* .delete-icon{
         position: absolute;
         right: 1.5rem;
         cursor: pointer;
         background-color: red;
         padding: 0.5rem;
         border-radius: 50%;
-      }
+      } */
 
       .card-title {
         font-size: 20px;
@@ -140,7 +140,7 @@
             <h3 class="card-title"><%= blog.title %></h3>
             <br />
             <a class="card-button" href="/blog/<%= blog._id %>">View</a>
-            <i class="fa-solid fa-trash delete-icon"></i>
+            <!-- <i class="fa-solid fa-trash delete-icon"></i> -->
           </div>
         </div>
         <% }) %>
@@ -148,26 +148,4 @@
     </main>
     <%- include("./partials/footer") %>
   </body>
-
-  <script>
-    document.querySelectorAll('.delete-icon').forEach(icon => {
-      icon.addEventListener('click', async function(e) {
-        e.stopPropagation();
-        if (!confirm("Are you sure you want to delete this blog?")) return;
-        const blogId = this.getAttribute('data-id');
-        const res = await fetch(`/blog/myBlog/${blogId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const result = await res.json();
-        if (result.success) {
-            this.closest('.card').remove();
-        } else {
-            alert(result.message || "Failed to delete blog.");
-        }
-      })
-    })
-  </script>
 </html>
